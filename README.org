@@ -1,0 +1,22 @@
+#+TITLE: .NET + PostgreSQL Boilerplate
+
+What is in here?
+
+* General
+
+- [ ] .NET 5 on Debian
+- [ ] ASP.NET 5 Web API with Swagger UI
+- [ ] Xunit, with one database per test
+
+* Database
+
+- [ ] Entity Framework
+- [ ] PostgreSQL using Docker
+- [ ] Database connection healthcheck
+
+* CI
+
+- [ ] Check code is formatted with [[https://github.com/dotnet/format][dotnet format]]
+- [ ] Check code builds
+- [ ] Check there are no uncommited migrations
+- [ ] Runs unit tests with a PostgreSQL database
