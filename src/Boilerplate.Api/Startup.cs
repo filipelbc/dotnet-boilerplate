@@ -27,6 +27,10 @@ namespace Boilerplate.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Boilerplate.Api", Version = "v1" });
             });
+
+            services
+                .AddHealthChecks()
+                .AddDbContextCheck<StoreContext>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -39,6 +43,7 @@ namespace Boilerplate.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health");
             });
         }
     }
