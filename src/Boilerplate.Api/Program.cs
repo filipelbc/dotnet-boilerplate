@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
+using Boilerplate.Utils.Logging;
+
 namespace Boilerplate.Api
 {
     public class Program
@@ -17,6 +19,7 @@ namespace Boilerplate.Api
                     webBuilder
                         .UseStartup<Startup>()
                         .UseUrls("http://localhost:5000");
-                });
+                })
+                .ConfigureLogging();
     }
 }

@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../Boilerplate.Utils.Logging/Boilerplate.Utils.Logging.csproj" />
     <ProjectReference Include="../Boilerplate.Store/Boilerplate.Store.csproj" />
   </ItemGroup>
 
