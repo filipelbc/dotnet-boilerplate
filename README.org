@@ -7,7 +7,7 @@ What is in here?
 - [x] .NET 5 on Debian
 - [x] ASP.NET 5 Web API with Swagger UI
 - [x] Logging with Serilog
-- [ ] Xunit, with one database per test
+- [x] Xunit, with one database per test
 - [ ] Healthcheck outputs json
 
 * Database
