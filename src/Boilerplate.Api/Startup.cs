@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
 using Boilerplate.Store;
+using static Boilerplate.Utils.Monitoring.HealthDelegates;
+using static Boilerplate.Utils.Json.JsonConfiguration;
 
 namespace Boilerplate.Api
 {
@@ -21,7 +24,11 @@ namespace Boilerplate.Api
         {
             services.AddStore(Configuration);
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    ConfigureJsonOptions(options.JsonSerializerOptions);
+                });
 
             services.AddSwaggerGen(c =>
             {
@@ -43,7 +50,10 @@ namespace Boilerplate.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHealthChecks("/health");
+                endpoints.MapHealthChecks("/health", new HealthCheckOptions()
+                {
+                    ResponseWriter = BuildHealthResponseWriter(GetJsonConfiguration())
+                });
             });
         }
     }
