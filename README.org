@@ -8,7 +8,7 @@ What is in here?
 - [x] ASP.NET 5 Web API with Swagger UI
 - [x] Logging with Serilog
 - [x] Xunit, with one database per test
-- [ ] Healthcheck outputs json
+- [x] Healthcheck outputs json
 
 * Database
 
