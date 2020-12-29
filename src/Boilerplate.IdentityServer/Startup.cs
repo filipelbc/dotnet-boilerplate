@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 
 using static Boilerplate.Utils.Monitoring.HealthDelegates;
 using static Boilerplate.Utils.Json.JsonConfiguration;
@@ -26,6 +22,27 @@ namespace Boilerplate.IdentityServer
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+
+            var connectionString = Configuration.GetConnectionString("IdentityContext");
+
+            var builder = services
+                .AddIdentityServer()
+                .AddConfigurationStore(options =>
+                {
+                    options.ConfigureDbContext = b => b.UseNpgsql(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
+                    options.DefaultSchema = "ConfigurationStore";
+                })
+                .AddOperationalStore(options =>
+                {
+                    options.ConfigureDbContext = b => b.UseNpgsql(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
+                    options.DefaultSchema = "OperationalStore";
+                    options.EnableTokenCleanup = true;
+                });
+
+            // Replace this when going to production!
+            builder.AddDeveloperSigningCredential();
+
             services
                 .AddHealthChecks();
         }
@@ -33,6 +50,8 @@ namespace Boilerplate.IdentityServer
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseRouting();
+
+            app.UseIdentityServer();
 
             app.UseEndpoints(endpoints =>
             {
