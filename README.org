@@ -18,10 +18,12 @@ What is in here?
 
 * CI
 
-- [ ] Check code is formatted with [[https://github.com/dotnet/format][dotnet format]]
-- [ ] Check code builds
+- [x] Gitlab CI
+- [x] Custom docker images on Gitlab Repository
+- [x] Check code is formatted with [[https://github.com/dotnet/format][dotnet format]]
+- [x] Check code builds
 - [ ] Check there are no uncommited migrations
-- [ ] Runs unit tests with a PostgreSQL database
+- [x] Runs unit tests with a PostgreSQL database
 
 * Authentication
 
