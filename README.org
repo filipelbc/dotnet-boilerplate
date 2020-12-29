@@ -25,4 +25,6 @@ What is in here?
 
 * Authentication
 
-- [ ] ASP.NET Identity with EF
+- [ ] Standalone ASP.NET Identity with IdentityServer and EF
+- [ ] Sign up with Email & Password
+- [ ] Sign up with Google
