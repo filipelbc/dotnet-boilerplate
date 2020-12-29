@@ -1,0 +1,37 @@
+image: registry.gitlab.com/filipelbc/dotnet-boilerplate/dev
+
+variables:
+    POSTGRES_HOST_AUTH_METHOD: trust
+    POSTGRES_PASSWORD: dbpassword
+    POSTGRES_USER: dbuser
+    POSTGRES_DB: dbname
+
+stages:
+    - lint
+    - build
+    - test
+
+dotnet-format:
+    stage: lint
+    script:
+        - dotnet format --version
+        - dotnet format --check
+
+build-app:
+    stage: build
+    script:
+        - dotnet build
+
+unit-tests:
+    services:
+        - name: registry.gitlab.com/filipelbc/dotnet-boilerplate/postgres
+          alias: postgres
+    stage: test
+    before_script:
+        - cd src/Boilerplate.Store
+        - dotnet ef migrations add FirstMigration
+        - dotnet ef database update
+        - cd -
+    script:
+        - cd tests/Boilerplate.Store.Tests
+        - dotnet test

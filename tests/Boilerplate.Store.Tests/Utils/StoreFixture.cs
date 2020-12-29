@@ -67,7 +67,7 @@ namespace Boilerplate.Store.Tests.Utils
 
         public static string NewConnectionString(string dbName)
         {
-            return $"Host=127.0.0.1;Database={dbName};Username=dbuser;Password=dbpassword";
+            return $"Host=postgres;Database={dbName};Username=dbuser;Password=dbpassword";
         }
 
         /// <summary>
