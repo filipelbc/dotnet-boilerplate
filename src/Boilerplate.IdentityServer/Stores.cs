@@ -3,6 +3,8 @@ using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 
+using Boilerplate.IdentityServer.SeedData;
+
 namespace Boilerplate.IdentityServer
 {
     public static class Stores
@@ -14,6 +16,8 @@ namespace Boilerplate.IdentityServer
 
             var configurationContext = services.GetRequiredService<ConfigurationDbContext>();
             configurationContext.Database.Migrate();
+
+            configurationContext.SeedConfiguration();
         }
     }
 }
