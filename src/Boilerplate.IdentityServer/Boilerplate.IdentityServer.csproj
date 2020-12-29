@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Boilerplate.Utils.Json/Boilerplate.Utils.Json.csproj" />
+    <ProjectReference Include="../Boilerplate.Utils.Monitoring/Boilerplate.Utils.Monitoring.csproj" />
+    <ProjectReference Include="../Boilerplate.Utils.Logging/Boilerplate.Utils.Logging.csproj" />
+  </ItemGroup>
+
+</Project>
