@@ -27,6 +27,8 @@ What is in here?
 
 * Authentication
 
-- [ ] Standalone ASP.NET Identity with IdentityServer and EF
-- [ ] Sign up with Email & Password
+- [x] ASP.NET Identity with IdentityServer4 and EF
+    - [[https://github.com/IdentityServer/IdentityServer4][IdentityServer4]]
+        - [[https://identityserver4.readthedocs.io/en/latest/quickstarts/0_overview.html][Quickstarts]]
+- [x] Sign up with Email & Password
 - [ ] Sign up with Google
