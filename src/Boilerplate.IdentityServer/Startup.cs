@@ -56,16 +56,26 @@ namespace Boilerplate.IdentityServer
 
             services
                 .AddHealthChecks();
+
+            services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseExceptionHandler("/Identity/Error");
+
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseIdentityServer();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(name: "default", pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
+
                 endpoints.MapHealthChecks("/health", new HealthCheckOptions()
                 {
                     ResponseWriter = BuildHealthResponseWriter(GetJsonConfiguration())
