@@ -87,8 +87,17 @@ namespace Boilerplate.IdentityServer.SeedData
 
                     AllowedGrantTypes = GrantTypes.Code,
 
-                    RedirectUris = { "https://localhost:5002/signin-oidc" },
-                    PostLogoutRedirectUris = { "https://localhost:5002/signout-callback-oidc" },
+                    AllowedCorsOrigins = {
+                        "https://localhost:5100",
+                    },
+
+                    RedirectUris = {
+                        "https://localhost:5100/callback.html",
+                        "https://localhost:5100/silent.html",
+                    },
+                    PostLogoutRedirectUris = {
+                        "https://localhost:5100/index.html",
+                    },
 
                     AllowedScopes = new List<string>
                     {
