@@ -48,7 +48,8 @@ namespace Boilerplate.IdentityServer
                     options.ConfigureDbContext = b => b.UseNpgsql(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
                     options.DefaultSchema = "OperationalStore";
                     options.EnableTokenCleanup = true;
-                });
+                })
+                .AddAspNetIdentity<ApplicationUser>();
 
             // Replace this when going to production!
             builder.AddDeveloperSigningCredential();
