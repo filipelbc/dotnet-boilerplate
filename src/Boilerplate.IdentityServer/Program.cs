@@ -17,6 +17,9 @@ namespace Boilerplate.IdentityServer
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
+                var logger = services.GetRequiredService<ILogger<Program>>();
+
+                logger.LogInformation("Initializing stores");
 
                 try
                 {
@@ -24,9 +27,11 @@ namespace Boilerplate.IdentityServer
                 }
                 catch (Exception ex)
                 {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred while initializing the IdentityServer stores.");
+                    throw;
                 }
+
+                logger.LogInformation("Initialized stores");
             }
 
             host.Run();

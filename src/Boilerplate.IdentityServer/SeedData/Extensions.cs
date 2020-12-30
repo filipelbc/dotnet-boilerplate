@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 using IdentityServer4.Models;
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
@@ -8,28 +9,22 @@ namespace Boilerplate.IdentityServer.SeedData
 {
     public static class Extensions
     {
-        public static void SeedConfiguration(this ConfigurationDbContext context)
+        public static void SeedConfiguration(this ConfigurationDbContext context, ILogger logger)
         {
-            // Add clients
-            var clients = new List<Client>
+            // Add API scopes
+            var apiScopes = new List<ApiScope>
             {
-                // Machine to Machine client
-                new Client
-                {
-                    ClientId = "client",
-                    ClientSecrets = { new Secret("secret".Sha256()) },
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    AllowedScopes = { "api1" },
-                },
+                new ApiScope("api-1", "API 1"),
             };
 
-            if (!context.Clients.Any())
+            foreach (var x in apiScopes)
             {
-                foreach (var x in clients)
+                if (!context.ApiScopes.Any(y => y.Name == x.Name))
                 {
-                    context.Clients.Add(x.ToEntity());
+                    logger.LogInformation("Adding scope: {scope}", x.Name);
+                    context.ApiScopes.Add(x.ToEntity());
+                    context.SaveChanges();
                 }
-                context.SaveChanges();
             }
 
             // Add Identity Resources
@@ -39,28 +34,37 @@ namespace Boilerplate.IdentityServer.SeedData
                 new IdentityResources.Profile(),
             };
 
-            if (!context.IdentityResources.Any())
+            foreach (var x in identityResources)
             {
-                foreach (var x in identityResources)
+                if (!context.IdentityResources.Any(y => y.Name == x.Name))
                 {
+                    logger.LogInformation("Adding identity resource: {identityResource}", x.Name);
                     context.IdentityResources.Add(x.ToEntity());
+                    context.SaveChanges();
                 }
-                context.SaveChanges();
             }
 
-            // Add API scopes
-            var apiScopes = new List<ApiScope>
+            // Add Clients
+            var clients = new List<Client>
             {
-                new ApiScope("api1", "My API")
+                // Machine to Machine (m2m) client
+                new Client
+                {
+                    ClientId = "client",
+                    ClientSecrets = { new Secret("secret".Sha256()) },
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    AllowedScopes = { "api-1" },
+                },
             };
 
-            if (!context.ApiScopes.Any())
+            foreach (var x in clients)
             {
-                foreach (var x in apiScopes)
+                if (!context.Clients.Any(y => y.ClientId == x.ClientId))
                 {
-                    context.ApiScopes.Add(x.ToEntity());
+                    logger.LogInformation("Adding client: {client}", x.ClientId);
+                    context.Clients.Add(x.ToEntity());
+                    context.SaveChanges();
                 }
-                context.SaveChanges();
             }
         }
     }
