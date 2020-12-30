@@ -63,6 +63,22 @@ namespace Boilerplate.IdentityServer.SeedData
                     AllowedScopes = { "api-1" },
                 },
 
+                // Username & Password Client
+                new Client
+                {
+                    ClientId = "password-client",
+                    ClientSecrets = { new Secret("secret".Sha256()) },
+
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+
+                    AllowedScopes = new List<string>
+                    {
+                        StandardScopes.OpenId,
+                        StandardScopes.Profile,
+                        "api-1",
+                    }
+                },
+
                 // Interactive Client
                 new Client
                 {
