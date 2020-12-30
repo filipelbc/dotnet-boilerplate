@@ -1,0 +1,3 @@
+#+TITLE: Vanilla Web Client
+
+This is based on [[https://github.com/IdentityModel/oidc-client-js][IdentityModel Oidc Client]].

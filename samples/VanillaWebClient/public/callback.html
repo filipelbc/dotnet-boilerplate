@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Processing callback...</h1>
+    <p>
+        <a href="index.html">Back to Home</a>
+    </p>
+
+    <script src="libs/oidc-client.js"></script>
+    <script>
+        Oidc.Log.logger = window.console;
+        Oidc.Log.level = Oidc.Log.DEBUG;
+
+        var mgr = new Oidc.UserManager({ response_mode:"query" });
+
+        mgr.signinRedirectCallback()
+            .then(function (user) {
+                window.history.replaceState(
+                    {},
+                    window.document.title,
+                    window.location.origin + window.location.pathname
+                );
+                window.location = "index.html";
+            });
+    </script>
+</body>
+</html>
