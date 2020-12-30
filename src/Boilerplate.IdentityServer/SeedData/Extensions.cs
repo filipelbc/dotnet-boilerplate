@@ -1,10 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity;
 using IdentityServer4.Models;
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
 using static IdentityServer4.IdentityServerConstants;
+
+using Boilerplate.IdentityServer.Models;
 
 namespace Boilerplate.IdentityServer.SeedData
 {
@@ -86,6 +90,41 @@ namespace Boilerplate.IdentityServer.SeedData
                     logger.LogInformation("Adding client: {client}", x.ClientId);
                     context.Clients.Add(x.ToEntity());
                     context.SaveChanges();
+                }
+            }
+        }
+
+        public static void SeedUsers(this ApplicationDbContext context, UserManager<ApplicationUser> userManager, ILogger logger)
+        {
+            var users = new List<ApplicationUser>
+            {
+                new ApplicationUser
+                {
+                    UserName = "alice",
+                    Email = "AliceSmith@email.com",
+                    EmailConfirmed = true,
+                },
+                new ApplicationUser
+                {
+                    UserName = "bob",
+                    Email = "BobSmith@email.com",
+                    EmailConfirmed = true
+                },
+            };
+
+            foreach (var user in users)
+            {
+                if (userManager.FindByNameAsync(user.UserName).Result == null)
+                {
+                    logger.LogInformation("Creating user: {user}", user.UserName);
+
+                    var result = userManager.CreateAsync(user, "Pass123$").Result;
+
+                    if (!result.Succeeded)
+                    {
+                        logger.LogError("Failed to create user: {user}, {@errors}", user.UserName, result.Errors);
+                        throw new Exception($"Failed to create user: {user.UserName}");
+                    }
                 }
             }
         }
