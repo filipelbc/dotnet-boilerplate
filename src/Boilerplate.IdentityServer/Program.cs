@@ -43,7 +43,7 @@ namespace Boilerplate.IdentityServer
                 {
                     webBuilder
                         .UseStartup<Startup>()
-                        .UseUrls("http://localhost:5100");
+                        .UseUrls("https://localhost:5000");
                 })
                 .ConfigureLogging();
     }

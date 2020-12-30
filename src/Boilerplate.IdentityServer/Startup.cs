@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 
+using Boilerplate.IdentityServer.Models;
 using static Boilerplate.Utils.Monitoring.HealthDelegates;
 using static Boilerplate.Utils.Json.JsonConfiguration;
 
@@ -25,6 +26,15 @@ namespace Boilerplate.IdentityServer
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
             var connectionString = Configuration.GetConnectionString("IdentityContext");
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseNpgsql(connectionString);
+            });
+
+            services
+                .AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             var builder = services
                 .AddIdentityServer()
