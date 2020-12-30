@@ -3,7 +3,7 @@
 # Use this to install stuff on a new cloud server.
 # Tested with Ubuntu 18.04 on AWS.
 
-set -e
+set -ex
 
 sudo apt-get -y update
 sudo apt-get -y upgrade

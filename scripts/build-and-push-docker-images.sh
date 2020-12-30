@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 REGISTRY_ROOT=registry.gitlab.com/filipelbc/dotnet-boilerplate
 
