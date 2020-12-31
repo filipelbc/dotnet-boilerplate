@@ -1,0 +1,4 @@
+#+TITLE: Samples for Manual Testing
+
+Run the ~PrivateApi~ and the ~VanillaWebClient~ together with the
+~Boilerplate.IdentityServer~ to test.
