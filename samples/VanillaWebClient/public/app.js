@@ -40,35 +40,39 @@ function logout() {
 
 function renew() {
     mgr.signinSilent()
-        .then(function () {
+        .then(() => {
             console.log("Token silently renewed");
             showTokens();
-        }).catch(function (err) {
-            console.log("Silent renew error:", err);
-        });
+        }).catch(
+            err => console.log("Error signing in", err)
+        );
 }
 
 function revoke() {
     mgr.revokeAccessToken()
-        .then(function () {
-            console.log("Access token revoked")
-        }).catch(function (err) {
-            console.log(err);
-        });
+        .then(
+            () => console.log("Access token revoked")
+        ).catch(
+            err => console.log("Error revoking access", err)
+        );
 }
 
 const api_endpoint = "https://localhost:5200/Identity";
 
 function call() {
-    mgr.getUser().then(function (user) {
+    mgr.getUser().then(user => {
         if (user) {
             fetch(api_endpoint, {
                 headers: {
                     Authorization: "Bearer " + user.access_token,
                 },
-            }).then(function (response) {
-                console.log("Got:", response);
-            });
+            }).then(
+                response => response.json()
+            ).then(
+                data => console.log(data)
+            ).catch(
+                err => console.log("Error revoking access", err)
+            );
         } else {
             console.log("Not logged in");
         }
@@ -83,9 +87,9 @@ document.querySelector("#call").addEventListener("click", call, false);
 
 function showTokens() {
     mgr.getUser()
-        .then(function (user) {
+        .then(user => {
             if (user) {
-                console.log("Logged in:", user);
+                console.log("Logged in", user);
             }
             else {
                 console.log("Not logged in");
