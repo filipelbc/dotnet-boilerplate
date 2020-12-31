@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace PrivateApi
+namespace Samples.PrivateApi
 {
     public class Program
     {

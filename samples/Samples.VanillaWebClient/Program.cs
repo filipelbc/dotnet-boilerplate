@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace VanillaWebClient
+namespace Samples.VanillaWebClient
 {
     public class Program
     {
