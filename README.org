@@ -28,7 +28,11 @@ What is in here?
 * Authentication
 
 - [x] ASP.NET Identity with IdentityServer4 and EF
-    - [[https://github.com/IdentityServer/IdentityServer4][IdentityServer4]]
-        - [[https://identityserver4.readthedocs.io/en/latest/quickstarts/0_overview.html][Quickstarts]]
+    - [[https://github.com/IdentityServer/IdentityServer4][IdentityServer4]] ([[https://identityserver4.readthedocs.io/en/latest/quickstarts/0_overview.html][Quickstarts]])
 - [x] Sign up with Email & Password
 - [ ] Sign up with Google
+- [ ] Integrate with [[https://github.com/skoruba/IdentityServer4.Admin][Identity Server Admin]]
+
+* Utils
+
+- [ ] Table printer
