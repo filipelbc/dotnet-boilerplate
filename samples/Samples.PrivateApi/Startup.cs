@@ -18,8 +18,10 @@ namespace Samples.PrivateApi
                     options.Authority = "https://localhost:5000";
 
                     // Remove this before going to production
-                    var handler = new HttpClientHandler();
-                    handler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+                    var handler = new HttpClientHandler
+                    {
+                        ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+                    };
                     options.BackchannelHttpHandler = handler;
 
                     options.TokenValidationParameters = new TokenValidationParameters
