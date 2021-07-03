@@ -4,35 +4,35 @@ What is in here?
 
 * General
 
-- [x] .NET 5 on Debian
-- [x] ASP.NET 5 Web API with Swagger UI
-- [x] Logging with Serilog
-- [x] Xunit, with one database per test
-- [x] Healthcheck outputs json
+- ✔️ .NET 5 on Debian
+- ✔️ ASP.NET 5 Web API with Swagger UI
+- ✔️ Logging with Serilog
+- ✔️ Xunit, with one database per test
+- ✔️ Healthcheck outputs json
 
 * Database
 
-- [x] Entity Framework
-- [x] PostgreSQL using Docker
-- [x] Database connection healthcheck
+- ✔️ Entity Framework
+- ✔️ PostgreSQL using Docker
+- ✔️ Database connection healthcheck
 
 * CI
 
-- [x] Gitlab CI
-- [x] Custom docker images on Gitlab Repository
-- [x] Check code is formatted with [[https://github.com/dotnet/format][dotnet format]]
-- [x] Check code builds
-- [ ] Check there are no uncommited migrations
-- [x] Runs unit tests with a PostgreSQL database
+- ✔️ Gitlab CI
+- ✔️ Custom docker images on Gitlab Repository
+- ✔️ Check code is formatted with [[https://github.com/dotnet/format][dotnet format]]
+- ✔️ Check code builds
+- ✔️ Runs unit tests with a PostgreSQL database
+- ⬜ Check there are no uncommited migrations
 
 * Authentication
 
-- [x] ASP.NET Identity with IdentityServer4 and EF
+- ✔️ ASP.NET Identity with IdentityServer4 and EF
     - [[https://github.com/IdentityServer/IdentityServer4][IdentityServer4]] ([[https://identityserver4.readthedocs.io/en/latest/quickstarts/0_overview.html][Quickstarts]])
-- [x] Sign up with Email & Password
-- [ ] Sign up with Google
-- [ ] Integrate with [[https://github.com/skoruba/IdentityServer4.Admin][Identity Server Admin]]
+- ✔️ Sign up with Email & Password
+- ⬜ Sign up with Google
+- ⬜ Integrate with [[https://github.com/skoruba/IdentityServer4.Admin][Identity Server Admin]]
 
 * Utils
 
-- [ ] Table printer
+- ⬜ Table printer
