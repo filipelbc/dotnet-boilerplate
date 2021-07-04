@@ -14,7 +14,6 @@ stages:
 dotnet-format:
     stage: lint
     script:
-        - dotnet format --version
         - dotnet format --check
 
 build-app:
