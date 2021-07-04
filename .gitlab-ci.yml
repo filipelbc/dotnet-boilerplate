@@ -1,7 +1,6 @@
 image: registry.gitlab.com/filipelbc/dotnet-boilerplate/dev
 
 variables:
-    POSTGRES_HOST_AUTH_METHOD: trust
     POSTGRES_PASSWORD: dbpassword
     POSTGRES_USER: dbuser
     POSTGRES_DB: dbname
